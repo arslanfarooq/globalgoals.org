@@ -1,0 +1,226 @@
+/* @define Grid */
+
+:root {
+  --Grid-gutter: 24px;
+  --Grid-gutter-lg: 32px;
+  --Grid-gutter-xl: 46px;
+  --Grid-loose-gutter: 45px;
+  --Grid-loose-gutter-md: 65px;
+  --Grid-loose-gutter-lg: 80px;
+}
+
+.Grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + var(--Grid-gutter));
+  margin: 0 calc(var(--Grid-gutter) * -0.5) calc(var(--Grid-gutter) * -1);
+}
+
+.Grid--masonry {
+  display: block;
+  column-count: 1;
+  column-gap: 0;
+}
+
+.Grid-cell {
+  display: flex;
+  flex-basis: 100%;
+  min-width: 0;
+  padding: 0 calc(var(--Grid-gutter) * 0.5);
+  margin-bottom: var(--Grid-gutter);
+}
+
+/**
+ * 1. Don't let their width change
+ */
+
+.Grid--masonry > .Grid-cell {
+  display: inline-block;
+  width: 100%; /* 1 */
+  break-inside: avoid;
+}
+
+.Grid--loose {
+  margin: 0 calc(var(--Grid-loose-gutter) * -0.5) calc(var(--Grid-loose-gutter) * -1);
+}
+
+.Grid--loose > .Grid-cell {
+  padding: 0 calc(var(--Grid-loose-gutter) * 0.5);
+  margin-bottom: var(--Grid-loose-gutter);
+}
+
+@media (--viewport-md) {
+  .Grid--loose {
+    margin: 0 calc(var(--Grid-loose-gutter-md) * -0.5) calc((var(--Grid-loose-gutter-md) + 10px) * -1);
+  }
+
+  .Grid--loose > .Grid-cell {
+    padding: 0 calc(var(--Grid-loose-gutter-md) * 0.5);
+    margin-bottom: calc(var(--Grid-loose-gutter-md) + 10px);
+  }
+}
+
+@media (--viewport-lg) {
+  .Grid {
+    width: calc(100% + var(--Grid-gutter-lg));
+    margin: 0 calc(var(--Grid-gutter-lg) * -0.5) calc(var(--Grid-gutter-lg) * -1);
+  }
+
+  .Grid .Grid-cell {
+    padding: 0 calc(var(--Grid-gutter-lg) * 0.5);
+    margin-bottom: var(--Grid-gutter-lg);
+  }
+
+  .Grid--loose {
+    margin: 0 calc(var(--Grid-loose-gutter-lg) * -0.5) calc(var(--Grid-loose-gutter-lg) * -1);
+  }
+
+  .Grid--loose > .Grid-cell {
+    padding: 0 calc(var(--Grid-loose-gutter-lg) * 0.5);
+    margin-bottom: var(--Grid-loose-gutter-lg);
+  }
+}
+
+@media (--viewport-xl) {
+  .Grid {
+    margin: 0 calc(var(--Grid-gutter-xl) * -0.5) calc(var(--Grid-gutter-xl) * -1);
+    width: calc(100% + var(--Grid-gutter-xl));
+  }
+
+  .Grid .Grid-cell {
+    padding: 0 calc(var(--Grid-gutter-xl) * 0.5);
+    margin-bottom: var(--Grid-gutter-xl);
+  }
+
+  .Grid--loose {
+    margin: 0 calc(var(--Grid-loose-gutter-lg) * -0.5) calc(var(--Grid-loose-gutter-lg) * -1);
+  }
+
+  .Grid--loose > .Grid-cell {
+    padding: 0 calc(var(--Grid-loose-gutter-lg) * 0.5);
+    margin-bottom: var(--Grid-loose-gutter-lg);
+  }
+}
+
+.Grid-cell--center {
+  margin: 0 auto;
+}
+
+.Grid-cell--appear {
+  opacity: 0;
+  transform: translateY(100px);
+  animation: Grid-cell--appear 600ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes Grid-cell--appear {
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.Grid-cell--1of2 {
+  flex-basis: auto;
+  width: 50%;
+}
+
+.Grid--masonry.Grid--2col {
+  column-count: 2;
+}
+
+.Grid-cell--1of3 {
+  flex-basis: auto;
+  width: calc(100% / 3);
+}
+
+.Grid-cell--2of3 {
+  flex-basis: auto;
+  width: calc((100% / 3) * 2);
+}
+
+.Grid--masonry.Grid--3col {
+  column-count: 3;
+}
+
+@media (--viewport-sm) {
+  .Grid-cell--sm1of2 {
+    flex-basis: auto;
+    width: 50%;
+  }
+
+  .Grid--masonry.Grid--sm2col {
+    column-count: 2;
+  }
+
+  .Grid-cell--sm1of3 {
+    flex-basis: auto;
+    width: calc(100% / 3);
+  }
+
+  .Grid-cell--sm2of3 {
+    flex-basis: auto;
+    width: calc((100% / 3) * 2);
+  }
+
+  .Grid--masonry.Grid--sm3col {
+    column-count: 3;
+  }
+}
+
+@media (--viewport-md) {
+  .Grid-cell--md1of2 {
+    flex-basis: auto;
+    width: 50%;
+  }
+
+  .Grid--masonry.Grid--md2col {
+    column-count: 2;
+  }
+
+  .Grid-cell--md1of3 {
+    flex-basis: auto;
+    width: calc(100% / 3);
+  }
+
+  .Grid-cell--md2of3 {
+    flex-basis: auto;
+    width: calc((100% / 3) * 2);
+  }
+
+  .Grid--masonry.Grid--md3col {
+    column-count: 3;
+  }
+
+  .Grid-cell--divideDown {
+    padding-bottom: var(--Grid-gutter-xl);
+  }
+}
+
+@media (--viewport-lg) {
+  .Grid-cell--lg1of2 {
+    flex-basis: auto;
+    width: 50%;
+  }
+
+  .Grid--masonry.Grid--lg2col {
+    column-count: 2;
+  }
+
+  .Grid-cell--lg1of3 {
+    flex-basis: auto;
+    width: calc(100% / 3);
+  }
+
+  .Grid-cell--lg2of3 {
+    flex-basis: auto;
+    width: calc((100% / 3) * 2);
+  }
+
+  .Grid--masonry.Grid--lg3col {
+    column-count: 3;
+  }
+
+  .Grid-cell--divideDown {
+    padding-bottom: var(--Grid-gutter-xl);
+  }
+}

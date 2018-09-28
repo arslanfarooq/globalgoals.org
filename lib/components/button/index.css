@@ -1,0 +1,94 @@
+/* @define Button */
+
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  height: 56px;
+  min-width: 130px;
+  padding: 0 20px;
+  font-size: 24px;
+  line-height: 1.1;
+  line-height: 56px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: var(--font-family-heading);
+  font-weight: bold;
+  word-spacing: var(--word-spacing-heading);
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-red);
+  transition: color 180ms var(--ease-out);
+  transition: background-color 140ms var(--ease-out);
+  user-select: none;
+}
+
+@media print {
+  .Button {
+    display: none;
+  }
+}
+
+@media (--viewport-md) {
+  .Button {
+    height: 64px;
+    line-height: 64px;
+    padding: 0 30px;
+  }
+}
+
+.Button:hover {
+  background-color: var(--color-dark-red);
+}
+
+.Button--fill {
+  width: 100%;
+}
+
+.Button--justifyLeft {
+  justify-content: flex-start;
+}
+
+.Button[disabled],
+.Button.is-disabled {
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  transition: color 200ms var(--ease);
+}
+
+.Button-icon {
+  display: block;
+  height: 1em;
+  position: relative;
+  bottom: -2px;
+}
+
+.Button-icon:first-child {
+  margin-right: 16px;
+}
+
+/**
+ * 1. Text node does not count as child
+ */
+
+.Button-icon:last-child:not(:first-child) { /* 1 */
+  margin-left: 16px;
+}
+
+/**
+ * Secondary version
+ */
+
+.Button--secondary {
+  background: var(--color-gray-light);
+  color: var(--color-text);
+}
+
+.Button--secondary:hover {
+  background: #e8e8e8;
+}
+
+.Button--secondary[disabled],
+.Button--secondary.is-disabled {
+  color: rgba(0, 0, 0, 0.3);
+}

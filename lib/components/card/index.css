@@ -1,0 +1,500 @@
+/* @define Card */
+
+@import "../tags";
+@import "../text";
+
+.Card {
+  display: block;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+@media print {
+  .Card {
+    display: none;
+  }
+}
+
+:root.has-js .Card--linked:not(.is-loading) {
+  cursor: pointer;
+}
+
+.Card-figure {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-gray-light);
+  user-select: none;
+  max-height: 420px;
+}
+
+.Card:not(.Card--fill) .Card-figure {
+  margin-bottom: 24px;
+}
+
+.Card-figure::after {
+  content: "";
+  position: relative;
+  display: block;
+  padding-top: 81%;
+  height: 0;
+  background: var(--color-hover-dark-on-fill);
+  transition: opacity 180ms var(--ease-out);
+  opacity: 0;
+}
+
+.Card-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-height: 100%;
+  width: auto;
+  transform: translate(-50%, -50%);
+}
+
+@supports (object-fit: cover) {
+  .Card-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+}
+
+.Card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  flex: 1 0 auto;
+}
+
+@media (--viewport-lg) {
+  .Card-content {
+    padding-bottom: 17px;
+  }
+}
+
+@media (--viewport-xl) {
+  .Card-content {
+    padding-bottom: 10px;
+  }
+}
+
+.Card-body {
+  width: 100%;
+}
+
+.Card-meta {
+  display: block;
+  margin: -6px 0 14px;
+  color: var(--color-text-light);
+  font-size: 14px;
+  font-style: normal;
+}
+
+.Card-meta--caption {
+  margin-top: 0.5rem;
+}
+
+/**
+ * Read more link
+ */
+
+.Card-link {
+  float: left;
+  margin: 3px 0 -23px -14px;
+  padding: 0 16px 0 14px;
+  line-height: 52px;
+  position: relative;
+  font-size: 24px;
+  color: var(--color-link);
+  text-transform: uppercase;
+  font-family: var(--font-family-heading);
+  font-weight: bold;
+  white-space: nowrap;
+  word-spacing: var(--word-spacing-heading);
+  user-select: none;
+  transition: color 140ms var(--ease-out), background-color 140ms var(--ease-out);
+}
+
+@media (--viewport-sm) {
+  .Card-link {
+    padding: 0 16px 0 14px;
+    margin: 8px 0 0 -14px;
+  }
+}
+
+.Card-linkText {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.Card-arrow {
+  border-style: solid;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  border-width: 1px 1px 0 0;
+  transform: rotate(45deg);
+  transition: transform 180ms cubic-bezier(0, 0, .2, 1);
+}
+
+.Card:not(.is-loading):not(.Card--fill) .Card-link:hover,
+:root.has-js .Card:not(.is-loading):not(.Card--fill):hover .Card-link {
+  background: var(--color-hover-dark);
+}
+
+:root.has-js .Card.Card--linked:not(.is-loading):not(.Card--fill):hover .Card-figure::after {
+  opacity: 1;
+}
+
+.Card:not(.is-loading):not(.Card--fill) .Card-link:hover,
+:root.has-js .Card:not(.is-loading):not(.Card--fill):hover .Card-link {
+  color: var(--color-link-enter);
+}
+
+.Card:not(.is-loading) .Card-link:hover .Card-arrow,
+:root.has-js .Card--linked:not(.is-loading):hover .Card-arrow {
+  transform: rotate(45deg) translate(2px, -2px);
+}
+
+.Card-download {
+  display: block;
+  margin-left: 8px;
+  height: 18px;
+  position: relative;
+  top: -1px;
+  right: -2px;
+}
+
+.Card-downloadArrow {
+  transform: translateY(1px);
+  transition: transform 180ms cubic-bezier(0, 0, .2, 1);
+}
+
+.Card:not(.is-loading) .Card-link:hover .Card-downloadArrow,
+:root.has-js .Card--linked:not(.is-loading):hover .Card-downloadArrow {
+  transform: translateY(2px);
+}
+
+/**
+ * 1. Fix text rendering jumping in Safari on hover
+ */
+
+.Card-external {
+  display: block;
+  margin-left: 11px;
+  height: 15px;
+  width: 15px;
+  overflow: visible !important;
+}
+
+.Card-externalArrow {
+  will-change: transform;
+  transition: transform 180ms cubic-bezier(0, 0, .2, 1);
+}
+
+.Card:not(.is-loading) .Card-link:hover .Card-externalArrow,
+:root.has-js .Card--linked:not(.is-loading):hover .Card-externalArrow {
+  transform: translate(2px, -2px);
+}
+
+/**
+ * Tweak the global focus states a little bit
+ */
+
+:root[data-focus-source="key"] .Card-link:focus {
+  box-shadow: none;
+  outline: 0;
+}
+
+:root[data-focus-source="key"] .Card-link:focus .Card-linkText::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  padding: 0 20px 0 14px;
+  position: absolute;
+  top: 0;
+  left: -14px;
+  box-shadow: 0 0 0 2px currentColor;
+  border-radius: 2px;
+}
+
+/**
+ * Tags
+ */
+
+.Card-tags {
+  width: 30%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Card-tag--single {
+  width: 96px;
+}
+
+/**
+ * Horizontal
+ */
+
+@media (--viewport-md) {
+  .Card--horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .Card--horizontal .Card-figure {
+    flex-grow: 1;
+    margin-bottom: 0;
+  }
+
+  .Card--horizontal .Card-content {
+    flex-grow: 0;
+    padding-left: 32px;
+  }
+
+  .Card--horizontal .Card-meta {
+    margin-top: 0;
+  }
+
+  .Card--horizontal .Card-tags {
+    width: 15%;
+  }
+
+  .Card--horizontal .Card-image {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+}
+
+@supports (object-fit: cover) {
+    .Card--horizontal .Card-image {
+      height: 100%;
+      width: 100%;
+    }
+}
+
+@media (--viewport-md) {
+  .Card--horizontal .Card-content {
+    width: calc(50% - 12px);
+  }
+}
+
+@media (--viewport-lg) {
+  .Card--horizontal .Card-content {
+    width: calc((100% / 3) - 21px);
+  }
+}
+
+@media (--viewport-xl) {
+  .Card--horizontal .Card-content {
+    width: calc((100% / 3) - 32px);
+  }
+}
+
+/**
+ * Colors
+ */
+
+.Card--fill .Card-content {
+  padding: 20px 20px 30px;
+  color: #fff;
+  background-color: var(--color-interactive);
+}
+
+@media (--viewport-sm) {
+  .Card--fill .Card-content {
+    padding: 28px 32px 32px;
+    min-height: 260px;
+  }
+}
+
+.Card--fill.Card--linked .Card-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.09);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border-radius: 1px;
+  transition: opacity 180ms var(--ease-out);
+}
+
+.Card--fill .Card-meta {
+  color: #fff;
+}
+
+.Card--fill .Card-body {
+  flex-grow: 1;
+  width: 100%;
+  z-index: 1;
+}
+
+.Card--fill .Card-link {
+  padding: 0;
+  width: 100%;
+  margin: 4px 0 -23px;
+}
+
+@media (--viewport-sm) {
+  .Card--fill .Card-link {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 5px;
+    margin: 34px 0 -26px;
+  }
+}
+
+.Card--light .Card-link {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.Card--fill .Card-link,
+.Card--fill .Card-link:hover,
+:root.has-js .Card--fill:hover .Card-link {
+  color: #fff;
+}
+
+:root.has-js .Card--linked:not(.is-loading):hover .Card-content::before {
+  opacity: 1;
+}
+
+.Card--light .Card-content,
+.Card--light .Card-meta,
+.Card--light .Card-link,
+.Card--light .Card-link:hover,
+:root.has-js .Card--light:hover .Card-link {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/**
+ * Loading state
+ */
+
+.Card.is-loading .Card-arrow {
+  display: none;
+}
+
+.Card--fill.is-loading .Card-content {
+  background: #f8f8f8;
+}
+
+.Card--fill.is-loading .Card-link {
+  border-color: transparent;
+}
+
+/**
+ * Social Icon Themes
+ * Card Card--fill Card--linked Card--withIcon Card--facebook
+ */
+
+.Card--withIcon .Card-figure {
+}
+
+@media (--viewport-sm-max) {
+  .Card--withIcon .Card-figure {
+    display: none;
+  }
+
+  .Card--withIcon .Card-content {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+@media (--viewport-sm) {
+  .Card--withIcon {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .Card--withIcon .Card-figure {
+    flex-grow: 1;
+    margin-bottom: 0;
+  }
+
+  .Card--withIcon .Card-content {
+    flex-grow: 0;
+    padding-left: 32px;
+    width: calc(100% - 220px);
+    min-height: 220px;
+  }
+}
+
+@media (--viewport-md) and (--viewport-lg-max) {
+  .Card--withIcon .Card-figure {
+    display: none;
+  }
+
+  .Card--withIcon .Card-content {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+.Card--twitter .Card-content {
+  background: var(--color-twitter);
+}
+
+.Card--twitter .Card-figure {
+  background-color: color(var(--color-twitter) shade(10%));
+}
+
+.Card--facebook .Card-content {
+  background: var(--color-facebook);
+}
+
+.Card--facebook .Card-figure {
+  background-color: color(var(--color-facebook) shade(10%));
+}
+
+.Card--instagram .Card-content {
+  background: var(--color-instagram);
+}
+
+.Card--instagram .Card-figure {
+  background-color: color(var(--color-instagram) shade(10%));
+}
+
+.Card--youtube .Card-content {
+  background: var(--color-youtube);
+}
+
+.Card--youtube .Card-figure {
+  background-color: color(var(--color-youtube) shade(10%));
+}
+
+.Card--withIcon .Card-figure {
+  background-size: auto 32%;
+  background-size: auto 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Card-icon {
+  color: #fff;
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.Card--youtube .Card-icon {
+  width: 48%;
+  height: 48%;
+}

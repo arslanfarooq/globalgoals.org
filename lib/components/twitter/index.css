@@ -1,0 +1,177 @@
+/* @define Twitter */
+
+.Twitter {
+  position: relative;
+  padding-top: 85px;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.Twitter-icon {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 36px;
+  height: 36px
+}
+
+.Twitter-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -20px -20px;
+}
+
+/**
+ * Cover up bottom row of tweet borders
+ */
+
+.Twitter-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: var(--color-twitter);
+}
+
+/**
+ * Tweet
+ */
+
+.Twitter-tweet {
+  position: relative;
+  width: 100%;
+  flex-basis: 100%;
+  flex-basis: auto;
+  flex-direction: column;
+  min-width: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 0 20px 25px;
+  padding-bottom: 25px;
+  display: none;
+}
+
+.Twitter-tweet:nth-child(-n+2) {
+  display: flex;
+}
+
+.Twitter-tweet:nth-child(2) {
+  border-bottom-width: 0;
+}
+
+@media (--viewport-md) {
+  .Twitter--size2 .Twitter-tweet:nth-child(-n+3) {
+    display: flex;
+  }
+
+  .Twitter--size2 .Twitter-tweet:nth-child(3) {
+    border-bottom-width: 0;
+  }
+
+  .Twitter--size2 .Twitter-tweet:nth-child(2) {
+    border-bottom-width: 1px;
+  }
+}
+
+@media (--viewport-md) {
+  .Twitter--size1 .Twitter-tweet:nth-child(-n+4) {
+    display: flex;
+    width: calc(50% - 40px);
+  }
+
+  .Twitter--size1 .Twitter-tweet:nth-child(3),
+  .Twitter--size1 .Twitter-tweet:nth-child(4),
+  .Twitter--size1 .Twitter-tweet:nth-child(5),
+  .Twitter--size1 .Twitter-tweet:nth-child(6) {
+    border-bottom-width: 0;
+  }
+
+  .Twitter--size1 .Twitter-tweet:nth-child(2) {
+    border-bottom-width: 1px;
+  }
+}
+
+@media (--viewport-xl) {
+  .Twitter--size1 .Twitter-tweet:nth-child(-n+6) {
+    display: flex;
+    width: calc((100% / 3) - 40px);
+  }
+
+  .Twitter--size1 .Twitter-tweet:nth-child(3) {
+    border-bottom-width: 1px;
+  }
+}
+
+/**
+ * Tweet content
+ */
+
+.Twitter-text a,
+.Twitter-user,
+.Twitter-link,
+.Twitter-heading {
+  padding: 3px;
+  margin: -3px;
+  text-decoration: underline;
+  transition: background-color 140ms var(--ease-out);
+  border-radius: 1px;
+}
+
+.Twitter-text a:hover,
+.Twitter-user:hover,
+.Twitter-link:hover,
+.Twitter-heading:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.Twitter-heading {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  text-decoration: none;
+}
+
+.Twitter-link {
+  cursor: pointer;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 28px);
+  padding: 10px;
+  margin: -10px;
+  transition-delay: 30ms;
+  box-sizing: content-box;
+}
+
+.Twitter-user {
+  align-self: flex-start;
+  z-index: 1;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.Twitter-date {
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  color: color(var(--color-twitter) shade(50%));
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.Twitter-text {
+  display: block;
+  padding-top: 8px;
+  clear: both;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.Twitter-text a {
+  pointer-events: auto;
+}

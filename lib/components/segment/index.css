@@ -1,0 +1,99 @@
+/* @define Segment */
+
+:root {
+  --Segment-image-sm: 180px;
+  --Segment-image-lg: 128px;
+  --Segment-caption-height: 28px;
+  --Segment-caption-margin: 4px;
+}
+
+/**
+ * 1. Internet Explorer be like "YOLO!"
+ */
+
+.Segment {
+  position: relative;
+  max-width: 100%; /* 1 */
+}
+
+.Segment-figure {
+  position: relative;
+  width: var(--Segment-image-sm);
+  min-height: var(--Segment-image-sm);
+  margin: 9px 0 14px;
+  box-sizing: content-box;
+  user-select: none;
+}
+
+@media (--viewport-sm) {
+  .Segment-figure {
+    float: left;
+    width: var(--Segment-image-lg);
+    min-height: var(--Segment-image-lg);
+    margin: 0 24px 0 0;
+  }
+}
+
+@media (--viewport-lg) {
+  .Segment-figure {
+    float: left;
+    margin-right: 32px;
+  }
+}
+
+.Segment-caption {
+  position: relative;
+  width: 100%;
+  min-height: var(--Segment-caption-height);
+  margin-bottom: var(--Segment-caption-margin);
+}
+
+@media print {
+  .Segment-caption {
+    color: black !important;
+  }
+}
+
+.Segment-caption {
+  color: #fff;
+  text-align: center;
+  font-size: 28px;
+  font-family: var(--font-family-heading);
+  font-weight: bold;
+  line-height: calc(var(--Segment-caption-height) + 9px);
+  text-transform: uppercase;
+  word-spacing: var(--word-spacing-heading);
+}
+
+@media (--viewport-sm) {
+  .Segment-caption {
+    font-size: 22px;
+    line-height: calc(var(--Segment-caption-height) + 1px);
+  }
+}
+
+@media (--viewport-lg) {
+  .Segment-caption {
+    font-size: 24px;
+  }
+}
+
+.Segment-image {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  color: transparent;
+}
+
+.Segment-body {
+  overflow: hidden;
+  position: relative;
+  top: 1px;
+}
+
+@media (--viewport-lg) {
+  .Segment-body {
+    top: -1px;
+  }
+}

@@ -1,0 +1,221 @@
+/* @define Single */
+
+@import "../base";
+@import "../button";
+@import "../grid";
+@import "../space";
+@import "../tags";
+@import "../text";
+
+:root {
+  --Single-gutter: var(--Grid-gutter);
+  --Single-gutter-lg: var(--Grid-gutter-lg);
+  --Single-gutter-xl: var(--Grid-gutter-xl);
+}
+
+.Single {
+  contain: style layout paint;
+}
+
+.Single-body--padd {
+  padding-top: 25px;
+}
+
+@media (--viewport-md) {
+  .Single-body--padd {
+    padding-top: 40px;
+  }
+}
+
+/**
+ * Sidebar
+ */
+
+.Single-block {
+  margin: 64px 0;
+}
+
+.Single-line {
+  margin: 16px 0;
+}
+
+.Single-block--group .Single-block:first-child {
+  margin-top: 7px;
+}
+
+.Single-block--group .Single-block:last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * 1. Quick change not reflected in rest of file: hide sidebar on narrow sceens
+ */
+
+.Single-column--sidebar {
+  display: none; /* 1 */
+}
+
+@media (--viewport-sm) {
+  .Single-column--sidebar {
+    flex-wrap: wrap;
+    margin: 74px calc(var(--Single-gutter) * -0.5) 0;
+  }
+
+  .Single-block {
+    width: 50%;
+    padding: 0 calc(var(--Single-gutter) * 0.5);
+    margin: 0 0 var(--Single-gutter);
+  }
+
+  .Single-block--group .Single-block {
+    width: 100%;
+  }
+
+  .Single-block--group .Single-block {
+    margin-bottom: 64px;
+  }
+
+  .Single-block:only-child {
+    width: 100%;
+  }
+}
+
+@media (--viewport-md) {
+  .Single-block {
+    width: calc(100% / 3);
+  }
+
+  .Single-block--group {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc((100% / 3) * 2);
+    margin: 0 calc(var(--Single-gutter) * -0.5);
+  }
+
+  .Single-block--group .Single-block {
+    width: 50%;
+  }
+
+  .Single-block:only-child {
+    width: 100%;
+  }
+}
+
+@media (--viewport-lg) {
+  .Single-block--group,
+  .Single-column--sidebar {
+    display: block;
+    margin: 0;
+  }
+
+  .Single-block,
+  .Single-block--group .Single-block {
+    width: auto;
+    padding: 0;
+    margin: 64px 0;
+  }
+
+  .Single-body--pullUp .Single-block--inset {
+    position: relative;
+    top: -136px;
+    margin: 0 0 -136px;
+  }
+
+  .Single-block:first-child {
+    margin-top: 0;
+  }
+}
+
+.Single-tags {
+  margin-bottom: 16px;
+  background-color: var(--color-gray-light);
+}
+
+.Single-tags--single {
+  background-color: transparent;
+}
+
+/**
+ * Columns
+ */
+
+@media (--viewport-lg) {
+  .Single-body {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--Single-gutter) * -0.5);
+  }
+
+  .Single-column {
+    flex-basis: 100%;
+    min-width: 0;
+    padding: 0 calc(var(--Single-gutter) * 0.5);
+  }
+
+  .Single-column--main {
+    flex-basis: auto;
+    width: calc((100% / 3) * 2);
+    padding-right: 72px;
+    border-right: 1px solid var(--color-gray-light);
+  }
+
+  .Single-column--sidebar {
+    flex-basis: auto;
+    padding-left: 72px;
+    width: calc(100% / 3);
+  }
+}
+
+@media print {
+  .Single-column--sidebar {
+    display: none;
+  }
+}
+
+/**
+ * Banner
+ */
+
+.Single-banner {
+  width: 100%;
+  height: 50vh;
+  max-height: 700px;
+  overflow: hidden;
+}
+
+.Single-bannerFigure {
+  object-fit: cover;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  background: var(--color-gray-light);
+}
+
+@media (--viewport-md) {
+  .Single-banner {
+    height: 63vh;
+  }
+}
+
+@supports (object-fit: cover) {
+  .Single-bannerFigure {
+    height: 100%;
+  }
+}
+
+/**
+ * Date
+ */
+
+.Single-date {
+  display: block;
+  margin: -5px 0 16px;
+  color: var(--color-text-light);
+  position: relative;
+}
+
+@media (--viewport-md) {
+  .Single-date {
+    margin: -8px 0 23px;
+  }
+}

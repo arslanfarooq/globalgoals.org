@@ -1,0 +1,12 @@
+# Development files
+*.env*
+server.key
+server.crt
+.vscode
+.npmrc
+
+# Libs
+node_modules
+
+# Build
+public

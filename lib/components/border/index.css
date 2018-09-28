@@ -1,0 +1,62 @@
+/* @define Border */
+
+.Border {
+  padding: 0 16px;
+  margin-bottom: 24px;
+  margin-top: 70px;
+  background-color: var(--color-text);
+  color: #fff;
+}
+
+@media print {
+  .Border {
+    display: none;
+  }
+}
+
+.Border.is-loading {
+  background: var(--color-gray-light);
+  color: transparent;
+}
+
+.Border--first {
+  margin-top: 0;
+}
+
+.Border-text {
+  color: inherit;
+  font-size: 24px;
+  line-height: 44px;
+  font-family: var(--font-family-heading);
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  word-spacing: var(--word-spacing-heading);
+}
+
+@media (--viewport-lg) {
+  .Border {
+    padding: 0 32px;
+  }
+
+  .Border-text {
+    line-height: 64px;
+  }
+}
+
+@media (--viewport-lg) {
+  .Border {
+    padding: 0 32px;
+    margin-bottom: 32px;
+  }
+
+  .Border-text {
+    line-height: 64px;
+  }
+}
+
+@media (--viewport-xl) {
+  .Border {
+    margin-bottom: 46px;
+  }
+}
